@@ -17,7 +17,7 @@
             <header class='query-field'>
                 <div class="input-div">
                     <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
-                    <input type="text" name="location" placeholder="City, Country">
+                    <input type="text" name="location" placeholder="City, Country" id='demo'>
                 </div>
                 
                 <div class="button-div">
@@ -28,6 +28,28 @@
 
             </header>
 
+            <section class="weather-div current">
+                <div class="current-icon weather-icon">
+
+                </div>
+                <div class="current-details info-container">
+                    <header>
+                        <h2>City -</h2>
+                        <em class="city-name"><p></p></em>
+                    </header>
+                    <p class="current-temp"> <span class="temp"></span>&#176</p>
+                    <div class="toggle-info">
+                        <h3 class="current"></h3>
+                        <p class="wind">Wind: <span data-wind=""></span>m/s</p>
+                        <p class="humidity">Humidity: <span data-humidity=""></span>%</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="next-day">
+                <h2>Next Day Forcast</h2>
+            </section>
+
             <section class="weather-div morning">
                 <div class="morning-icon weather-icon">
 
@@ -36,11 +58,11 @@
                     <header>
                         <h2>Morning</h2>
                     </header>
-                    <p class="morning-temp"> -1&#176</p>
-                    <div class="toggle-info">
+                    <p class="morning-temp"> <span class="temp2"></span>&#176</p>
+                    <div class="toggle-info info2">
                         <h3 class="morning">Sunny</h3>
-                        <p class="wind">Wind: <span data-wind=""></span></p>
-                        <p class="humidity">Humidity: <span data-humidity=""></span></p>
+                        <p class="wind">Wind: <span data-wind=""></span>m/s</p>
+                        <p class="humidity">Humidity: <span data-humidity=""></span>%</p>
                     </div>
                 </div>
             </section>
@@ -53,28 +75,11 @@
                     <header>
                         <h2>Day</h2>
                     </header>
-                    <p class="day-temp"> -1&#176</p>
-                    <div class="toggle-info">
+                    <p class="day-temp"> <span class="temp3"></span>&#176</p>
+                    <div class="toggle-info info3">
                         <h3 class="day">Mostly Sunny</h3>
-                        <p class="wind">Wind: <span data-wind=""></span></p>
-                        <p class="humidity">Humidity: <span data-humidity=""></span></p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="weather-div evening">
-                <div class="evening-icon weather-icon">
-
-                </div>
-                <div class="evening-details info-container">
-                    <header>
-                        <h2>Evening</h2>
-                    </header>
-                    <p class="evening-temp"> -1&#176</p>
-                    <div class="toggle-info">
-                        <h3 class="evening">Rain</h3>
-                        <p class="wind">Wind: <span data-wind=""></span></p>
-                        <p class="humidity">Humidity: <span data-humidity=""></span></p>
+                        <p class="wind">Wind: <span data-wind=""></span>m/s</p>
+                        <p class="humidity">Humidity: <span data-humidity=""></span>%</p>
                     </div>
                 </div>
             </section>
@@ -87,11 +92,11 @@
                     <header>
                         <h2>Night</h2>
                     </header>
-                    <p class="night-temp"> -1&#176</p>
-                    <div class="toggle-info">
+                    <p class="night-temp"> <span class="temp4"></span>&#176</p>
+                    <div class="toggle-info info4">
                         <h3 class="night">Cloudy</h3>
-                        <p class="wind">Wind: <span data-wind=""></span></p>
-                        <p class="humidity">Humidity: <span data-humidity=""></span></p>
+                        <p class="wind">Wind: <span data-wind=""></span>m/s</p>
+                        <p class="humidity">Humidity: <span data-humidity=""></span>%</p>
                     </div>
                 </div>
             </section>
@@ -99,7 +104,8 @@
 
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
 

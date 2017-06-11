@@ -14,26 +14,24 @@ body {
 
 .container {
     width: 35%;
-    height: 800px;
-    margin: 100px auto;
-    background-color: whitesmoke;
+    height: 715px;
+    margin: 0px auto;
+    background-color: wheat;
     border-radius: 20px;
 }
 
 .contents {
-    border: 2px solid black;    
+    border: 2px solid black;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 20px;
-    
 }
 
 
 /***** Header *****/
 
 header.query-field {
-
     padding: 2% 1%;
     background-color: #5f7462;
     color: #f5f5f5;
@@ -49,10 +47,11 @@ header.query-field {
 
 .input-div {
     float: left;
+    /*display: inline-block;    */
     width: 75%;
     height: 100%;
     /*border: 1px solid aliceblue;*/
-}   
+}
 
 .button-div {
     display: inline-block;
@@ -64,7 +63,7 @@ header.query-field {
     background: wheat;
 }
 
-.submit-btn{
+.submit-btn {
     text-decoration: none;
 }
 
@@ -76,8 +75,8 @@ header.query-field {
     padding: 0 15px;
 }
 
-.submit-btn i{
-    line-height: 100%;
+.submit-btn i {
+    /*line-height: 50%;*/
     padding: 0 5px;
 }
 
@@ -85,8 +84,14 @@ header.query-field {
 /***** Weather Divs *****/
 
 .weather-div {
+    height: 20.9%;
+    padding: 5px;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.weather-div:nth-of-type(1) {
     height: 22.5%;
-    padding: 15px;
 }
 
 section.morning {
@@ -97,7 +102,7 @@ section.day {
     background: #DB9864;
 }
 
-section.evening {
+section.current {
     background: #b0695a;
 }
 
@@ -105,33 +110,61 @@ section.night {
     background: #4c526f;
 }
 
-.weather-icon{
+.next-day {
+    /*height: 5%;*/
+    text-align: center;
+    padding: 5px;
+}
+
+.weather-icon {
     height: 100%;
     float: left;
-    margin-right: 20px;
-    width: 50%;
+    /*display: inline-block;*/
+    margin-right: 10px;
+    width: 40%;
     border: 2px solid blue;
+    overflow: hidden;
 }
 
-.info-container header{
+.info-container {
+    display: inline-block;
+    width: 55%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.info-container header {
     color: #e7ddcd;
     margin-bottom: 5px;
-    
+    width: 100%;
 }
 
-.info-container header + p {
-    font-size: 30px;
+.info-container header+p {
+    font-size: 25px;
     font-weight: 200;
-    margin-bottom: 15px;
+    margin-bottom: 7px;
 }
 
+.weather-div:hover {
+    height: 11.25%;
+}
 
+.toggle-info h3 {
+    margin-bottom: 10px;
+}
 
+.info-container header h2 {
+    display: inline-block;
+    /*width: 50%;*/
+}
 
-
-
-
-
+.info-container header .city-name {
+    display: inline-block;
+    font-size: 15px;
+    width: 50%;
+    text-align: center;
+    /*margin-left: 10px;*/
+}
 
 
 
@@ -143,32 +176,24 @@ section.night {
 
 
 @media (max-width: 1150px) {
-
     .container {
         width: 55%;
-        height: 800px;
+        /*height: 800px;
         margin: 100px auto;
         background-color: whitesmoke;
-        border-radius: 20px;
+        border-radius: 20px;*/
     }
-
 }
 
-
-
 @media (max-width: 680px) {
-
     .container {
         width: 100%;
-        height: 800px;
+        /*height: 800px;
         margin: 0 auto;
         border: 2px solid black;
-        background-color: whitesmoke;
+        background-color: whitesmoke;*/
     }
-
-    .query-field .fa-map-marker{
+    .query-field .fa-map-marker {
         margin: 0 0;
-        
     }
-
 }
