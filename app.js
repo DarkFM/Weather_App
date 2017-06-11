@@ -101,28 +101,28 @@
                 dateTime = times[i].dt_txt.split(' ')
                 nextDay = Number(dateTime[1].split(':')[0]);
 
-                if(count === 3){
+                if (count === 3) {
                     break;
                 }
 
                 switch (nextDay) {
                     case 9:
-                        if(count === 0){
+                        if (count === 0) {
                             displayForecast(times);
                         }
                         // count =;
                         break;
                     case 15:
                         // dayArry.push(times[i]);
-                        if(count === 1){
+                        if (count === 1) {
                             displayForecast(times);
                         }
                         break;
                     case 21:
                         // dayArry.push(times[i]);
-                        if(count === 2){
+                        if (count === 2) {
                             displayForecast(times);
-                        }                        
+                        }
                         break;
                     default:
                         break;
@@ -133,11 +133,10 @@
             function displayForecast(times) {
                 ++count;
                 var temp = times[i].main.temp;
-                // console.log(temp);
                 $('.temp' + j).text(temp);
-                console.log(temp);                
-                console.log("-----------", j);                
-                
+                // console.log(temp);                
+                // console.log("-----------", j);                
+
 
                 var current = times[i].weather[0].description;
                 $('.info' + j + ' h3').text(current);
@@ -212,6 +211,20 @@
         // on click, update weather of city
         $('.submit-btn').on('click', function () {
             getWeather();
+        });
+
+        // var weather_div = document.getElementsByClassName("weather-div");
+
+        var weather_div = $('section.weather-div:not(".current")');
+
+        weather_div.click(function () {
+
+            for (var i = 0; i < weather_div.length; i++) {
+                var element = weather_div[i];
+                $(element).removeClass('active');
+            }
+            $(this).addClass('active')
+
         });
 
 
