@@ -29,35 +29,10 @@
             var location = globals.location,
                 usrInput = $('.input-div input').val() || '';
 
-            // if (usrInput) {
-            // getCityWeather(usrInput);
             getCityWeather(usrInput, location);
             getCityForecast(usrInput, location)
 
-            // } else {
-            // getCurrentLocationWeather(location);
-            // }
         }
-
-        // function getCityWeather(usrInput) {
-        //     var locationArry = usrInput.split(',');
-        //     city = locationArry[0] || '';
-        //     country = locationArry[1] || '';
-        //     var countryCode = getCountryCode(country, globals.countryISO);
-
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: "http://api.openweathermap.org/data/2.5/weather",
-        //         data: {
-        //             q: city + ',' + countryCode,
-        //             APPID: globals.API_KEY
-        //         },
-        //         dataType: 'json',
-        //         success: function (obj) {
-        //             displayWeatherInfo(obj);
-        //         }
-        //     });
-        // }
 
         // gets weather from user input
         function getCityWeather(usrInput, location) {
@@ -103,13 +78,13 @@
                     units: unit,
                     type: 'accurate',
                     APPID: globals.API_KEY,
-                    cnt: 8                  
+                    cnt: 8
                 } : {
                     APPID: globals.API_KEY,
                     lat: location.lat,
                     lon: location.lon,
                     units: unit,
-                    cnt: 8 
+                    cnt: 16
                 },
                 dataType: 'json',
                 success: displayNextDayForcast
@@ -118,11 +93,51 @@
 
         function displayNextDayForcast(obj) {
             var times = obj.list;
+            var dateTime, nextDay, count = 0;
+            var dayArry = [];
+            var findNext9 = false;
 
-            for (var i = 3, j = 2; i < 8; i += 2, j++) {
+            for (var i = 0, j = 2; i < times.length; i++) {
+                dateTime = times[i].dt_txt.split(' ')
+                nextDay = Number(dateTime[1].split(':')[0]);
 
+                if(count === 3){
+                    break;
+                }
+
+                switch (nextDay) {
+                    case 9:
+                        if(count === 0){
+                            displayForecast(times);
+                        }
+                        // count =;
+                        break;
+                    case 15:
+                        // dayArry.push(times[i]);
+                        if(count === 1){
+                            displayForecast(times);
+                        }
+                        break;
+                    case 21:
+                        // dayArry.push(times[i]);
+                        if(count === 2){
+                            displayForecast(times);
+                        }                        
+                        break;
+                    default:
+                        break;
+                }
+
+            };
+
+            function displayForecast(times) {
+                ++count;
                 var temp = times[i].main.temp;
-                $('.temp' + j ).text(temp);
+                // console.log(temp);
+                $('.temp' + j).text(temp);
+                console.log(temp);                
+                console.log("-----------", j);                
+                
 
                 var current = times[i].weather[0].description;
                 $('.info' + j + ' h3').text(current);
@@ -132,8 +147,9 @@
 
                 var humidity = times[i].main.humidity;
                 $('.info' + j + ' span[data-humidity]').text(humidity);
-
+                j++;
             }
+
         }
 
 
@@ -193,7 +209,7 @@
             // getLocation();
         }
 
-        
+        // on click, update weather of city
         $('.submit-btn').on('click', function () {
             getWeather();
         });
