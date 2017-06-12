@@ -8,6 +8,9 @@
     <link href="style.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/db52c940be.js"></script>
     <link href="https://use.fontawesome.com/db52c940be.css" media="all" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Courgette|Patrick+Hand+SC');
+    </style>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
                     <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
                     <input type="text" name="location" placeholder="City, Country" id='demo'>
                 </div>
-                
+
                 <div class="button-div">
                     <a href="#" class="submit-btn">
                         <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -30,12 +33,13 @@
 
             <section class="weather-div current">
                 <div class="current-icon weather-icon">
+                    <div class=""></div>
 
                 </div>
                 <div class="current-details info-container">
                     <header>
-                        <h2>City -</h2>
-                        <em class="city-name"><p></p></em>
+                        <h2>City</h2>
+                        <!--<em class="city-name"><p></p></em>-->
                     </header>
                     <p class="current-temp"> <span class="temp"></span>&#176</p>
                     <div class="toggle-info">
@@ -47,11 +51,13 @@
             </section>
 
             <section class="next-day">
-                <h2>Next Day Forcast</h2>
+                <h2>Next Day Forecast</h2>
+                <p style='display: inline-block; margin-left: 10px; font-size: 23px'></p>
             </section>
 
             <section class="weather-div morning active">
                 <div class="morning-icon weather-icon">
+                    <div class="icon2 active-weather-icon"></div>
 
                 </div>
                 <div class="morning-details info-container">
@@ -69,6 +75,7 @@
 
             <section class="weather-div day">
                 <div class="day-icon weather-icon">
+                    <div class="icon3"></div>
 
                 </div>
                 <div class="day-details info-container">
@@ -86,6 +93,7 @@
 
             <section class="weather-div night">
                 <div class="night-icon weather-icon">
+                    <div class="icon4"></div>
 
                 </div>
                 <div class="night-details info-container">

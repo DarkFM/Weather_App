@@ -2,7 +2,6 @@
         location: {},
         countryISO: {},
         API_KEY: '5e87c8e1feeebf07eae117d7d3a2980b'
-
     }
 
     $(function () {
@@ -109,6 +108,7 @@
                     case 9:
                         if (count === 0) {
                             displayForecast(times);
+                            $('.next-day h2+p').text(dateTime[0]);
                         }
                         // count =;
                         break;
@@ -134,9 +134,6 @@
                 ++count;
                 var temp = times[i].main.temp;
                 $('.temp' + j).text(temp);
-                // console.log(temp);                
-                // console.log("-----------", j);                
-
 
                 var current = times[i].weather[0].description;
                 $('.info' + j + ' h3').text(current);
@@ -146,6 +143,14 @@
 
                 var humidity = times[i].main.humidity;
                 $('.info' + j + ' span[data-humidity]').text(humidity);
+
+                var weatherIconId = times[i].weather[0].icon;
+                var weatherURL = "http://openweathermap.org/img/w/" +
+                    weatherIconId + ".png";
+
+                var weatherImg = "<img src='" + weatherURL + "' class='icon-img'>";
+                $('.icon' + j).html(weatherImg);
+
                 j++;
             }
 
@@ -158,8 +163,16 @@
             // temp = Math.round(temp - 273.15);
             $('.current-temp .temp').text(temp);
 
+            var weatherIconId = obj.weather[0].icon;
+            var weatherURL = "http://openweathermap.org/img/w/" +
+                weatherIconId + ".png";
+
+            var weatherImg = "<img src='" + weatherURL + "' class='icon-img'>";
+            $('.current-icon div').html(weatherImg);
+
             var city = obj.name
-            $('.city-name p').text(city);
+            // $('.city-name p').text(city);
+            $('.current-details header h2').text(city);
 
             var current = obj.weather[0].main;
             $('.toggle-info .current').text(current);
@@ -222,8 +235,18 @@
             for (var i = 0; i < weather_div.length; i++) {
                 var element = weather_div[i];
                 $(element).removeClass('active');
+                // $('.weather-icon div').removeClass('.active-weather-icon');
+                var weatherIconDiv = document.querySelector(".icon"+(i+2));
+                weatherIconDiv.classList.remove('active-weather-icon');
             }
-            $(this).addClass('active')
+            $(this).addClass('active');
+            
+            this.querySelector(".weather-icon div").classList.add("active-weather-icon");
+
+            // console.log(testtt);
+
+
+            
 
         });
 
