@@ -6,23 +6,40 @@
 
     // $(function () {
 
-    var getLocation = (function getLocation() {
+    $.ajax({
+        type: 'GET',
+        url: "https://freegeoip.net/json/?",
+        jsonpCallback: 'usrLocation',
+        dataType: "jsonp",
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                globals.location = {
-                    lat: position.coords.latitude,
-                    lon: position.coords.longitude
-                };
-                getWeather();
-            });
-        } else {
-            globals.location = {
-                lat: '',
-                lon: ''
-            };
-        }
-    }());
+    });
+
+    function usrLocation(data) {
+        globals.location.ip = data.ip;
+        globals.location.lat = data.latitude;
+        globals.location.lon = data.longitude;
+
+        getWeather();
+    }
+
+
+    // var getLocation = (function getLocation() {
+
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(function (position) {
+    //             globals.location = {
+    //                 lat: position.coords.latitude,
+    //                 lon: position.coords.longitude
+    //             };
+    //             getWeather();
+    //         });
+    //     } else {
+    //         globals.location = {
+    //             lat: '',
+    //             lon: ''
+    //         };
+    //     }
+    // }());
 
     // populates all data fields
     function getWeather() {
@@ -195,9 +212,10 @@
         });
 
     }());
-        function countryISO(obj) {
-            globals.countryISO = obj;
-        }
+
+    function countryISO(obj) {
+        globals.countryISO = obj;
+    }
 
     // gets country code from locally sotered JSON
     function getCountryCode(country, obj) {
@@ -229,7 +247,7 @@
             $(".toggle-units").text(far)
 
             for (var i = 0; i < symbol.length; i++) {
-                    $(symbol[i]).text('C');
+                $(symbol[i]).text('C');
             }
         }
     });
@@ -263,7 +281,7 @@
             toFar = false;
         }
 
-        $(this).text( ($(this).text() == far) ? cel : far);
+        $(this).text(($(this).text() == far) ? cel : far);
 
         var units = $('.info-container header+p span:first-of-type');
         var symbol = $('.units');
