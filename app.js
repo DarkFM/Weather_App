@@ -24,6 +24,7 @@
             }
         }());
 
+        // populates all data fields
         function getWeather() {
             var location = globals.location,
                 usrInput = $('.input-div input').val() || '';
@@ -39,21 +40,20 @@
             city = locationArry[0] || '';
             country = locationArry[1] || '';
             var countryCode = getCountryCode(country, globals.countryISO);
-            var unit = 'metric';
 
             $.ajax({
                 type: 'GET',
                 url: "http://api.openweathermap.org/data/2.5/weather",
                 data: (usrInput) ? {
                     q: city + ',' + countryCode,
-                    units: unit,
+                    units: "metric",
                     type: 'accurate',
                     APPID: globals.API_KEY
                 } : {
                     APPID: globals.API_KEY,
                     lat: location.lat,
                     lon: location.lon,
-                    units: unit
+                    units: "metric"
                 },
                 dataType: 'json',
                 success: function (obj) {
@@ -171,10 +171,9 @@
             $('.current-icon div').html(weatherImg);
 
             var city = obj.name
-            // $('.city-name p').text(city);
             $('.current-details header h2').text(city);
 
-            var current = obj.weather[0].main;
+            var current = obj.weather[0].description;
             $('.toggle-info .current').text(current);
 
             var wind = obj.wind.speed;
@@ -226,12 +225,9 @@
             getWeather();
         });
 
-        // var weather_div = document.getElementsByClassName("weather-div");
-
         var weather_div = $('section.weather-div:not(".current")');
-
         weather_div.click(function () {
-
+            // remove "active" and "active-weather-icon" classes from all selected divs
             for (var i = 0; i < weather_div.length; i++) {
                 var element = weather_div[i];
                 $(element).removeClass('active');
@@ -239,16 +235,41 @@
                 var weatherIconDiv = document.querySelector(".icon"+(i+2));
                 weatherIconDiv.classList.remove('active-weather-icon');
             }
+            // adds class to clicked element
             $(this).addClass('active');
-            
-            this.querySelector(".weather-icon div").classList.add("active-weather-icon");
 
-            // console.log(testtt);
-
-
-            
+            this.querySelector(".weather-icon div").classList
+                              .add("active-weather-icon");
 
         });
 
 
+        $(".toggle-units").click(function () {
+           var far = "F\xB0", cel = "C\xB0";
+           var toFar = false;
+        //    var currUnit = $(this);
+            if($(this).text() == far){
+                toFar = true;   
+            } else{
+                toFar = false;
+            }
+
+           $(this).text( ($(this).text() == far) ? cel : far );
+
+           var units = $('.info-container header+p span:first-of-type');
+           var symbol = $('.units');
+
+           for (var i = 0; i < units.length; i++) {
+               var unit = Number( $(units[i]).text() );
+
+               if(toFar){
+                   $(units[i]).text(String((unit * 1.8) + 32).slice(0,5));
+                   $(symbol[i]).text('F');
+               } else{
+                   $(units[i]).text(String((unit - 32) / 1.8).slice(0,5));
+                   $(symbol[i]).text('C');                   
+               }   
+           }
+
+        });
     });
