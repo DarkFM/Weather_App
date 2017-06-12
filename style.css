@@ -100,6 +100,7 @@ header.query-field {
 .toggle-units {
     position: absolute;
     font-size: 25px;
+    text-align: center;
     right: 0;
     top: 0;
     width: 40%;

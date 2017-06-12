@@ -4,8 +4,7 @@
         API_KEY: '5e87c8e1feeebf07eae117d7d3a2980b'
     }
 
-    // $(function () {
-
+        // immediatly gets users location and saves it in global object
     $.ajax({
         type: 'GET',
         url: "https://freegeoip.net/json/?",
@@ -21,25 +20,6 @@
 
         getWeather();
     }
-
-
-    // var getLocation = (function getLocation() {
-
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(function (position) {
-    //             globals.location = {
-    //                 lat: position.coords.latitude,
-    //                 lon: position.coords.longitude
-    //             };
-    //             getWeather();
-    //         });
-    //     } else {
-    //         globals.location = {
-    //             lat: '',
-    //             lon: ''
-    //         };
-    //     }
-    // }());
 
     // populates all data fields
     function getWeather() {
@@ -104,7 +84,6 @@
             jsonpCallback: "displayNextDayForcast",
             dataType: 'jsonp',
         });
-
     }
 
     function displayNextDayForcast(obj) {
@@ -117,9 +96,7 @@
             dateTime = times[i].dt_txt.split(' ')
             nextDay = Number(dateTime[1].split(':')[0]);
 
-            if (count === 3) {
-                break;
-            }
+            if (count === 3) { break; }
 
             switch (nextDay) {
                 case 9:
@@ -144,6 +121,7 @@
 
         };
 
+        // populates the info for next day forecast
         function displayForecast(times) {
             ++count;
             var temp = times[i].main.temp;
@@ -167,10 +145,9 @@
 
             j++;
         }
-
     }
 
-
+    // prints the current weather information to the screen
     function displayWeatherInfo(obj) {
 
         var temp = obj.main.temp;
@@ -197,8 +174,8 @@
 
     }
 
-
     // returns JSON of country codes
+    // IIFE at start of app
     (function getCountryISOjson() {
         $.ajax({
             type: 'GET',
@@ -213,11 +190,12 @@
 
     }());
 
+    // used by the geonames API to get the jsonp
     function countryISO(obj) {
         globals.countryISO = obj;
     }
 
-    // gets country code from locally sotered JSON
+    // returns country code from locally sotered JSON
     function getCountryCode(country, obj) {
         if (!country) {
             return '';
@@ -231,9 +209,11 @@
                 return obj.geonames[i]["countryCode"];
             }
         }
-        alert("Cannot find city/country name, Will attempt to use your current location");
+        alert("Cannot find country name, will guess location based on city");
         // getLocation();
     }
+
+// ************** Event Listeners **************
 
     // on click, update weather of city
     $('.submit-btn').on('click', function () {
@@ -270,7 +250,7 @@
 
     });
 
-
+    //  change all units on button press
     $(".toggle-units").click(function () {
         var far = "F\xB0",
             cel = "C\xB0";
@@ -299,4 +279,3 @@
         }
 
     });
-    // });
